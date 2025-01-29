@@ -5,7 +5,7 @@ from ..config import hash_password, verify_password
 
 def create_user(db: Session, user: UserCreate):
     hashed_password = hash_password(user.password)
-    db_user = User(username=user.username, dob=user.dob, gender=user.gender, phone_no=user.phone_no, password_hash=hashed_password)
+    db_user = User(username=user.username, dob=user.dob, gender=user.gender, phone_no=user.phone_no, password=hashed_password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

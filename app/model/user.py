@@ -6,18 +6,18 @@ import enum
 
 # Enum for gender
 class GenderEnum(str, enum.Enum):
-    male = "Male"
-    female = "Female"
-    other = "Other"
+    male = "male"
+    female = "female"
+    other = "other"
 
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    username = Column(String(50), unique=True, index=True, nullable=False)
-    dob = Column(Date, nullable=False)
+    username = Column(String(50), index=True, nullable=False)
+    dob = Column(String(50), nullable=False)
     gender = Column(Enum(GenderEnum), nullable=False)
     phone_no = Column(String(15), unique=True, nullable=False)
-    password_hash = Column(String, nullable=False)
+    password = Column(String(100), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
     messages = relationship("Message", back_populates="user")
 

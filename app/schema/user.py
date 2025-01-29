@@ -1,3 +1,5 @@
+import datetime
+
 from pydantic import BaseModel
 
 class UserCreate(BaseModel):
@@ -5,6 +7,7 @@ class UserCreate(BaseModel):
     dob: str
     gender: str
     phone_no: str
+    password: str
 
 class MessageCreate(BaseModel):
     user_id: int
