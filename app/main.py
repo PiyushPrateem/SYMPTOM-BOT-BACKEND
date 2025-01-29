@@ -8,6 +8,7 @@ from .database import Base, engine
 
 app = FastAPI()
 
+
 # Create Tables
 Base.metadata.create_all(bind=engine)
 
