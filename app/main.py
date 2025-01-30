@@ -17,6 +17,22 @@ Base.metadata.create_all(bind=engine)
 def signup(user: UserCreate, db: Session = Depends(get_db)):
     return create_user(db, user)
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# Allow frontend to access the backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Adjust if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Create Tables
+Base.metadata.create_all(bind=engine)
+
 @app.post("/login/")
 def login(user: UserLogin, db: Session = Depends(get_db)):
     authenticated_user = authenticate_user(db, user.phone_no, user.password)
