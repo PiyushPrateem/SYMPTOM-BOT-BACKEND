@@ -13,7 +13,7 @@ def create_user(db: Session, user: UserCreate):
 
 def authenticate_user(db: Session, phone_no: str, password: str):
     user = db.query(User).filter(User.phone_no == phone_no).first()
-    if user and verify_password(password, user.password_hash):
+    if user and verify_password(password, user.password):
         return user
     return None
 
